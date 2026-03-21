@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-heading: "Poppins", sans-serif;
+  --font-body: "Open Sans", sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll animation base */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.scroll-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero floating glow orbs */
+.hero-float-1 {
+  animation: heroFloat1 8s ease-in-out infinite;
+}
+
+.hero-float-2 {
+  animation: heroFloat2 10s ease-in-out infinite;
+}
+
+.hero-float-3 {
+  animation: heroFloat3 12s ease-in-out infinite;
+}
+
+@keyframes heroFloat1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(30px, -40px) scale(1.1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes heroFloat2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translate(-20px, 30px) scale(1.15);
+    opacity: 0.25;
+  }
+}
+
+@keyframes heroFloat3 {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.2;
+  }
+}
+
+/* Hero gear spin */
+.hero-spin {
+  animation: heroSpin 20s linear infinite;
+}
+
+.hero-spin-reverse {
+  animation: heroSpinReverse 25s linear infinite;
+}
+
+@keyframes heroSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes heroSpinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+/* Hero floating tool */
+.hero-float-tool {
+  animation: heroFloatTool 6s ease-in-out infinite;
+}
+
+@keyframes heroFloatTool {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+  }
+}
+
+/* Hero chain lines */
+.hero-chain-1 {
+  animation: heroChain 4s ease-in-out infinite;
+}
+
+.hero-chain-2 {
+  animation: heroChain 5s ease-in-out infinite reverse;
+}
+
+@keyframes heroChain {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scaleX(1.3);
+  }
+}
