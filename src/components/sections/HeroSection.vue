@@ -26,43 +26,40 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section
-    id="hero"
-    class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black dark:from-black dark:via-gray-900 dark:to-black"
-  >
+  <section id="hero" class="relative h-screen overflow-hidden bg-black">
+    <video
+      class="absolute inset-0 z-0 h-full w-full object-cover brightness-110 contrast-110"
+      autoplay
+      muted
+      loop
+      playsinline
+      poster="/images/hero-fallback.jpg"
+      preload="metadata"
+    >
+      <source src="/videos/jhbikestore_hero_video.mp4" type="video/mp4" />
+    </video>
+
+    <div class="absolute inset-0 z-10 bg-black/30"></div>
+
     <!-- Animated background layer (parallax) -->
     <div
-      class="absolute inset-0 transition-transform duration-100 ease-linear"
+      class="absolute inset-0 z-5 transition-transform duration-100 ease-linear"
       :style="{ transform: `translateY(${parallaxOffset * 0.3}px)` }"
     >
-      <!-- Dot pattern -->
       <div
-        class="absolute inset-0 opacity-[0.07]"
-        style="
-          background-image: radial-gradient(
-            circle at 1px 1px,
-            rgba(255, 255, 255, 0.3) 1px,
-            transparent 0
-          );
-          background-size: 48px 48px;
-        "
-      ></div>
-
-      <!-- Animated green glow orbs -->
-      <div
-        class="absolute top-1/4 left-1/4 w-80 h-80 bg-green-500/20 rounded-full blur-3xl hero-float-1"
+        class="absolute top-1/4 left-1/4 w-80 h-80 bg-green-500/10 rounded-full blur-2xl hero-float-1"
       ></div>
       <div
-        class="absolute bottom-1/3 right-1/4 w-96 h-96 bg-green-400/15 rounded-full blur-3xl hero-float-2"
+        class="absolute bottom-1/3 right-1/4 w-96 h-96 bg-green-400/8 rounded-full blur-2xl hero-float-2"
       ></div>
       <div
-        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl hero-float-3"
+        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-emerald-500/5 rounded-full blur-2xl hero-float-3"
       ></div>
     </div>
 
     <!-- Floating workshop elements -->
     <div
-      class="absolute inset-0 pointer-events-none"
+      class="absolute inset-0 z-20 pointer-events-none"
       :style="{ transform: `translateY(${parallaxOffset * 0.15}px)` }"
     >
       <!-- Gear icon -->
@@ -137,57 +134,71 @@ onUnmounted(() => {
 
       <!-- Chain-like decorative lines -->
       <div
-        class="absolute top-[30%] right-[20%] w-32 h-px bg-gradient-to-r from-transparent via-green-500/20 to-transparent hero-chain-1"
+        class="absolute top-[30%] right-[20%] h-px w-32 bg-linear-to-r from-transparent via-green-500/20 to-transparent hero-chain-1"
       ></div>
       <div
-        class="absolute top-[70%] left-[25%] w-40 h-px bg-gradient-to-r from-transparent via-emerald-500/15 to-transparent hero-chain-2"
+        class="absolute top-[70%] left-[25%] h-px w-40 bg-linear-to-r from-transparent via-emerald-500/15 to-transparent hero-chain-2"
       ></div>
     </div>
 
+    <div class="absolute top-0 left-0 z-20 h-20 w-full bg-black"></div>
+
     <!-- Hero content (parallax foreground) -->
     <div
-      class="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
-      :style="{ transform: `translateY(${parallaxOffset * 0.1}px)` }"
+      class="relative z-30 flex h-full items-center justify-center pt-16 sm:pt-20"
     >
-      <!-- Title -->
-      <h1
-        class="font-heading text-5xl sm:text-6xl lg:text-8xl font-bold text-white mb-6 tracking-tight transition-all duration-700 ease-out"
-        :class="
-          heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        "
-      >
-        JH <span class="text-green-500">Bikes</span>
-      </h1>
-
-      <!-- Subtitle -->
-      <p
-        class="font-body text-lg sm:text-xl lg:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed transition-all duration-700 ease-out delay-200"
-        :class="
-          heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        "
-      >
-        Custom Builds. Smart Upgrades. Honest Prices.
-      </p>
-
-      <!-- CTA -->
       <div
-        class="flex flex-col sm:flex-row items-center justify-center gap-4 transition-all duration-700 ease-out delay-500"
-        :class="
-          heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-        "
+        class="px-4 text-center sm:px-6 lg:px-8"
+        :style="{ transform: `translateY(${parallaxOffset * 0.1}px)` }"
       >
-        <Button :href="FB_PAGE_URL" variant="primary" size="lg" external>
-          Get Started
-        </Button>
-        <Button :href="MESSENGER_URL" variant="outline" size="lg" external>
-          Message Now
-        </Button>
+        <div class="mx-auto max-w-4xl">
+          <!-- Title -->
+          <h1
+            class="mb-6 font-heading text-5xl font-bold tracking-tight text-white transition-all duration-700 ease-out sm:text-6xl lg:text-8xl"
+            :class="
+              heroVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
+            "
+          >
+            JH <span class="text-green-500">Bikes</span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p
+            class="mx-auto mb-12 max-w-2xl font-body text-lg leading-relaxed text-gray-200 transition-all duration-700 ease-out delay-200 sm:text-xl lg:text-2xl"
+            :class="
+              heroVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
+            "
+          >
+            Custom Builds. Smart Upgrades. Honest Prices.
+          </p>
+
+          <!-- CTA -->
+          <div
+            class="flex flex-col items-center justify-center gap-4 transition-all duration-700 ease-out delay-500 sm:flex-row"
+            :class="
+              heroVisible
+                ? 'opacity-100 translate-y-0'
+                : 'opacity-0 translate-y-8'
+            "
+          >
+            <Button :href="FB_PAGE_URL" variant="primary" size="lg" external>
+              Get Started
+            </Button>
+            <Button :href="MESSENGER_URL" variant="outline" size="lg" external>
+              Message Now
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Scroll indicator -->
     <div
-      class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce transition-all duration-700 delay-700"
+      class="absolute bottom-8 left-1/2 z-30 -translate-x-1/2 animate-bounce transition-all duration-700 delay-700"
       :class="heroVisible ? 'opacity-100' : 'opacity-0'"
     >
       <svg
